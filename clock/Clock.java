@@ -9,11 +9,11 @@ import java.io.*;
 public class Clock{
 
     // working with serialised file
-    private static final String FILENAME = "E:\\Projects\\Clock System\\logs.data";
-    private static final String CLOCKSTATUSFILE = "E:\\Projects\\Clock System\\clockStatus.txt";
-    private static final String SESSIONSTARTDATE = "E:\\Projects\\Clock System\\sessionStartDate.txt";
-    private static final String SESSIONSTARTTIME = "E:\\Projects\\Clock System\\sessionStartTime.txt";
-    private static final String CLOCKLOGS = "E:\\Projects\\Clock System\\clockLogs.txt";
+    private static final String FILENAME = "logs.data";
+    private static final String CLOCKSTATUSFILE = "clockStatus.txt";
+    private static final String SESSIONSTARTDATE = "sessionStartDate.txt";
+    private static final String SESSIONSTARTTIME = "sessionStartTime.txt";
+    private static final String CLOCKLOGS = "clockLogs.txt";
 
     public static void saveMap(LinkedHashMap<String, Float> mp){
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILENAME))){
@@ -232,36 +232,10 @@ public class Clock{
             e.printStackTrace();
         }
     }
+
+    
 }
 
-class RunClock{
-    public static void main(String[] args){
-        Scanner obj = new Scanner(System.in);
-        System.out.println("Clock ON or OFF? 1 for ON, 0 for OFF");
-        int clockFlag = Clock.loadFlag();
-        
-        while(true){
-            int flag = obj.nextInt();
-            if(flag == 1 && clockFlag == 1){
-                System.out.println("Clock is already ON");
-            }
-            else if(flag == 0 && clockFlag == 0){
-                System.out.println("Clock is already off");
-            }
-            else{
-                if(flag == 1){
-                    Clock.clockON();
-                }
-                else{
-                    Clock.clockOUT();
-                }
-                break;
-            }
-        }
-        obj.close();
-        Clock.showHistory();
-    }
-}
 
 /*
     ClockON(){
